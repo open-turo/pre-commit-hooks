@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  workflow_dispatch: {}
+  push:
+
+jobs:
+
+#  release-notes:
+#    name: Release notes preview
+#    runs-on: ubuntu-latest
+#    steps:
+#      - if: github.ref != 'refs/heads/main'
+#        uses: open-turo/actions-release/lint-release-notes@v3
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: open-turo/action-pre-commit@v1
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo no tests
+        shell: bash
